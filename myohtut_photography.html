@@ -41,10 +41,26 @@
         /* Image hover effect */\
         .gallery-item img \{\
             transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\
+            cursor: pointer; /* Indicate it's clickable */\
         \}\
         .gallery-item:hover img \{\
             transform: scale(1.05);\
             opacity: 0.9;\
+        \}\
+\
+        /* --- LIGHTBOX STYLES --- */\
+        #lightbox-modal \{\
+            transition: opacity 0.3s ease-in-out;\
+        \}\
+        .lightbox-content \{\
+            max-width: 90vw; /* Maximum width on screen */\
+            max-height: 90vh; /* Maximum height on screen */\
+            position: relative;\
+        \}\
+        .lightbox-content img \{\
+            max-width: 100%;\
+            max-height: 100%;\
+            object-fit: contain; /* Ensure the whole image is visible */\
         \}\
     </style>\
 </head>\
@@ -93,8 +109,9 @@
             </div>\
         </section>\
 \
-        <!-- Services Section -->\
+        <!-- Services Section (omitted for brevity, assume content is the same) -->\
         <section id="services" class="py-16 md:py-24 bg-white">\
+             <!-- [CONTENT OMITTED FOR BREVITY] -->\
             <div class="container text-center">\
                 <span class="text-primary text-sm font-semibold uppercase tracking-widest">Our Focus</span>\
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-12">The Art of Storytelling</h2>\
@@ -123,7 +140,7 @@
             </div>\
         </section>\
 \
-        <!-- Portfolio Section -->\
+        <!-- Portfolio Section (Updated with data-url attribute for Lightbox) -->\
         <section id="portfolio" class="py-16 md:py-24 bg-gray-100">\
             <div class="container text-center">\
                 <span class="text-primary text-sm font-semibold uppercase tracking-widest">Our Work</span>\
@@ -131,38 +148,47 @@
 \
                 <!-- Responsive Photo Grid -->\
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">\
-                    <!-- Placeholder Images -->\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <!-- Images now have a data-full-url attribute and are wrapped in a clickable div -->\
+                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300" \
+                        data-full-url="https://placehold.co/1000x1200/333333/FFFFFF?text=Wedding+1+Full">\
                         <img src="https://placehold.co/400x500/333333/FFFFFF?text=Wedding+1" alt="Wedding Photography" class="w-full h-full object-cover">\
                     </div>\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/4F46E5/FFFFFF?text=Portrait+1+Full">\
                         <img src="https://placehold.co/400x500/4F46E5/FFFFFF?text=Portrait+1" alt="Portrait Session" class="w-full h-full object-cover">\
                     </div>\
-                    <div class="gallery-item hidden sm:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item hidden sm:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/10B981/FFFFFF?text=Wedding+2+Full">\
                         <img src="https://placehold.co/400x500/10B981/FFFFFF?text=Wedding+2" alt="Candid Shot" class="w-full h-full object-cover">\
                     </div>\
-                    <div class="gallery-item hidden lg:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item hidden lg:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/F59E0B/FFFFFF?text=Family+Photo+Full">\
                         <img src="https://placehold.co/400x500/F59E0B/FFFFFF?text=Family+Photo" alt="Family Portrait" class="w-full h-full object-cover">\
                     </div>\
 \
-                    <div class="gallery-item hidden lg:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item hidden lg:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/9333EA/FFFFFF?text=Engagement+Full">\
                         <img src="https://placehold.co/400x500/9333EA/FFFFFF?text=Engagement" alt="Engagement Session" class="w-full h-full object-cover">\
                     </div>\
-                    <div class="gallery-item hidden sm:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item hidden sm:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/3B82F6/FFFFFF?text=Portrait+2+Full">\
                         <img src="https://placehold.co/400x500/3B82F6/FFFFFF?text=Portrait+2" alt="Maternity Session" class="w-full h-full object-cover">\
                     </div>\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/EF4444/FFFFFF?text=Ceremony+Full">\
                         <img src="https://placehold.co/400x500/EF4444/FFFFFF?text=Ceremony" alt="Ceremony Moment" class="w-full h-full object-cover">\
                     </div>\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300">\
+                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
+                        data-full-url="https://placehold.co/1000x1200/059669/FFFFFF?text=Couple+Full">\
                         <img src="https://placehold.co/400x500/059669/FFFFFF?text=Couple" alt="Couple's Portrait" class="w-full h-full object-cover">\
                     </div>\
                 </div>\
             </div>\
         </section>\
 \
-        <!-- About Section -->\
+        <!-- About Section (omitted for brevity, assume content is the same) -->\
         <section id="about" class="py-16 md:py-24 bg-white">\
+             <!-- [CONTENT OMITTED FOR BREVITY] -->\
             <div class="container max-w-4xl">\
                 <div class="text-center mb-12">\
                     <span class="text-primary text-sm font-semibold uppercase tracking-widest">Our Philosophy</span>\
@@ -187,8 +213,10 @@
             </div>\
         </section>\
 \
-        <!-- Contact Section -->\
+\
+        <!-- Contact Section (omitted for brevity, assume content is the same) -->\
         <section id="contact" class="py-16 md:py-24 bg-gray-900">\
+             <!-- [CONTENT OMITTED FOR BREVITY] -->\
             <div class="container max-w-3xl">\
                 <div class="text-center mb-12">\
                     <span class="text-primary text-sm font-semibold uppercase tracking-widest">Get In Touch</span>\
@@ -227,7 +255,7 @@
         </section>\
     </main>\
 \
-    <!-- Footer -->\
+    <!-- Footer (omitted for brevity, assume content is the same) -->\
     <footer class="bg-accent text-white py-12">\
         <div class="container text-center">\
             <h4 class="text-3xl font-bold text-logo tracking-tight mb-4">Myohtut Photography</h4>\
@@ -239,7 +267,7 @@
         </div>\
     </footer>\
 \
-    <!-- Submission Modal (Instead of alert()) -->\
+    <!-- 1. Contact Submission Modal (Instead of alert()) -->\
     <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">\
         <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-11/12 text-center transform transition-all duration-300 scale-95 opacity-0" id="modal-content">\
             <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>\
@@ -247,6 +275,17 @@
             <p class="text-gray-600 mb-6">Thank you for your interest. We will be in touch within 24-48 hours to discuss your photography needs.</p>\
             <button id="close-modal-button" class="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-primary transition duration-300">\
                 Close\
+            </button>\
+        </div>\
+    </div>\
+\
+    <!-- 2. Lightbox Modal -->\
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center opacity-0">\
+        <div class="lightbox-content">\
+            <img id="lightbox-image" src="" alt="Full Resolution Image" class="rounded-lg shadow-2xl">\
+            <!-- Close Button -->\
+            <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl font-bold p-2 rounded-full bg-black/50 hover:bg-black/80 transition duration-300 focus:outline-none">\
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>\
             </button>\
         </div>\
     </div>\
@@ -279,7 +318,6 @@
                 auth = getAuth(app);\
 \
                 // Handle Authentication and determine userId\
-                // onAuthStateChanged ensures we always have the current user state\
                 onAuthStateChanged(auth, async (user) => \{\
                     if (user) \{\
                         userId = user.uid;\
@@ -320,7 +358,7 @@
             menu.classList.toggle('hidden');\
         \});\
 \
-        // 2. Modal Functions (Defined before they are used)\
+        // 2. Contact Submission Modal Functions\
         function closeModal() \{\
             const modal = document.getElementById('success-modal');\
             const modalContent = document.getElementById('modal-content');\
@@ -340,36 +378,31 @@
             const modalMessage = modalContent.querySelector('p');\
             const modalIcon = modalContent.querySelector('svg');\
 \
-            // Update modal content\
             modalTitle.textContent = title;\
             modalMessage.textContent = message;\
 \
-            // Update icon and colors based on success/error\
             if (isSuccess) \{\
                 modalIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';\
                 modalIcon.classList.remove('text-red-500');\
-                modalIcon.classList.add('text-primary'); // primary is violet\
+                modalIcon.classList.add('text-primary'); \
             \} else \{\
                 modalIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';\
                 modalIcon.classList.remove('text-primary');\
                 modalIcon.classList.add('text-red-500');\
             \}\
 \
-            // Show modal and reset form\
             modal.classList.remove('hidden');\
 \
-            // Apply transition classes for animation\
             setTimeout(() => \{\
                 modalContent.classList.remove('scale-95', 'opacity-0');\
                 modalContent.classList.add('scale-100', 'opacity-100');\
             \}, 10);\
         \}\
 \
-        // 3. Contact Form Submission (using Modal and Firestore)\
+        // 3. Contact Form Submission\
         document.getElementById('contact-form').addEventListener('submit', async function(event) \{\
             event.preventDefault();\
 \
-            // Check if Firebase is initialized and auth is ready\
             if (!isAuthReady || !db || !userId) \{\
                 console.error("Firebase or Auth is not ready. Cannot save data.");\
                 showModal('Submission Failed', 'The connection to the server is not ready. Please try again in a moment or contact us via email.', false);\
@@ -381,17 +414,16 @@
             const data = Object.fromEntries(formData.entries());\
 \
             try \{\
-                // Path structure: /artifacts/\{appId\}/public/data/inquiries\
+                // Path: /artifacts/\{appId\}/public/data/inquiries\
                 const collectionPath = `artifacts/$\{appId\}/public/data/inquiries`;\
 \
                 await addDoc(collection(db, collectionPath), \{\
                     ...data,\
-                    // Add metadata\
                     userId: userId,\
                     timestamp: serverTimestamp(),\
                 \});\
 \
-                form.reset(); // Clear the form on successful submission\
+                form.reset(); \
                 showModal('Inquiry Sent!', 'Thank you for your interest. We will be in touch within 24-48 hours!', true);\
             \} catch (error) \{\
                 console.error("Error writing document: ", error);\
@@ -402,9 +434,53 @@
         // 4. Modal Close Functionality Setup\
         document.getElementById('close-modal-button').addEventListener('click', closeModal);\
         document.getElementById('success-modal').addEventListener('click', function(event) \{\
-            // Close if user clicks outside the modal content\
             if (event.target === this) \{\
                 closeModal();\
+            \}\
+        \});\
+        \
+        // --- NEW LIGHTBOX FUNCTIONALITY ---\
+\
+        const lightboxModal = document.getElementById('lightbox-modal');\
+        const lightboxImage = document.getElementById('lightbox-image');\
+        const lightboxClose = document.getElementById('lightbox-close');\
+        \
+        // Function to open the lightbox\
+        function openLightbox(url) \{\
+            lightboxImage.src = url;\
+            lightboxModal.classList.remove('hidden');\
+            // Animate opacity in\
+            setTimeout(() => lightboxModal.classList.add('opacity-100'), 10);\
+        \}\
+\
+        // Function to close the lightbox\
+        function closeLightbox() \{\
+            // Animate opacity out\
+            lightboxModal.classList.remove('opacity-100');\
+            setTimeout(() => \{\
+                lightboxModal.classList.add('hidden');\
+                lightboxImage.src = ''; // Clear image source\
+            \}, 300); // Matches CSS transition time\
+        \}\
+\
+        // Add click listeners to all gallery items\
+        document.querySelectorAll('.gallery-item').forEach(item => \{\
+            item.addEventListener('click', function() \{\
+                const fullUrl = this.getAttribute('data-full-url');\
+                if (fullUrl) \{\
+                    openLightbox(fullUrl);\
+                \}\
+            \});\
+        \});\
+\
+        // Close lightbox on button click\
+        lightboxClose.addEventListener('click', closeLightbox);\
+\
+        // Close lightbox when clicking outside the image content\
+        lightboxModal.addEventListener('click', function(event) \{\
+            // Check if the click occurred directly on the modal background\
+            if (event.target === lightboxModal) \{\
+                closeLightbox();\
             \}\
         \});\
 \
