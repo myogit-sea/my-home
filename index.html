@@ -1,491 +1,275 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2865
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myohtut Photography | Authentic Storytelling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Define a custom theme using the Playfair Display and Inter fonts */
+        :root {
+            --color-primary: #581c87; /* Deep Violet/Plum */
+            --color-secondary: #fef08a; /* Soft Yellow */
+            --color-neutral-dark: #1f2937; /* Gray 800 */
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .bg-primary { background-color: var(--color-primary); }
+        .text-primary { color: var(--color-primary); }
+        .border-primary { border-color: var(--color-primary); }
+        .bg-secondary { background-color: var(--color-secondary); }
+        .text-shadow {
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+        /* Gallery Image Style */
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 antialiased">
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="en">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Myohtut Photography - Wedding & Portrait</title>\
-    <!-- Load Tailwind CSS -->\
-    <script src="https://cdn.tailwindcss.com"></script>\
-    <!-- Use Inter font family -->\
-    <style>\
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');\
-        body \{\
-            font-family: 'Inter', sans-serif;\
-            color: #333; /* Dark gray text */\
-            background-color: #f7f7f7; /* Off-white background */\
-        \}\
-        .text-primary \{ color: #8B5CF6; \} /* Tailwind 'violet-500' equivalent for accent */\
-        .border-primary \{ border-color: #8B5CF6; \}\
-        .bg-accent \{ background-color: #1f2937; \} /* Dark background for footer/nav */\
-        .text-logo \{ font-family: 'Playfair Display', serif; \}\
-\
-        /* Custom scroll-spy style for smooth scrolling */\
-        html \{\
-            scroll-behavior: smooth;\
-        \}\
-\
-        /* Responsive Container */\
-        .container \{\
-            max-width: 1280px;\
-            margin: 0 auto;\
-            padding: 0 1rem;\
-        \}\
-\
-        /* Image hover effect */\
-        .gallery-item img \{\
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\
-            cursor: pointer; /* Indicate it's clickable */\
-        \}\
-        .gallery-item:hover img \{\
-            transform: scale(1.05);\
-            opacity: 0.9;\
-        \}\
-\
-        /* --- LIGHTBOX STYLES --- */\
-        #lightbox-modal \{\
-            transition: opacity 0.3s ease-in-out;\
-        \}\
-        .lightbox-content \{\
-            max-width: 90vw; /* Maximum width on screen */\
-            max-height: 90vh; /* Maximum height on screen */\
-            position: relative;\
-        \}\
-        .lightbox-content img \{\
-            max-width: 100%;\
-            max-height: 100%;\
-            object-fit: contain; /* Ensure the whole image is visible */\
-        \}\
-    </style>\
-</head>\
-<body>\
-\
-    <!-- Navigation Bar -->\
-    <header id="navbar" class="sticky top-0 z-50 shadow-lg bg-white/95 backdrop-blur-sm">\
-        <nav class="container flex justify-between items-center py-4">\
-            <a href="#home" class="text-3xl font-bold text-gray-900 text-logo tracking-tight">Myohtut Photography</a>\
-            <div class="hidden md:flex space-x-8">\
-                <a href="#services" class="text-gray-600 hover:text-primary transition duration-300">Services</a>\
-                <a href="#portfolio" class="text-gray-600 hover:text-primary transition duration-300">Portfolio</a>\
-                <a href="#about" class="text-gray-600 hover:text-primary transition duration-300">About</a>\
-                <a href="#contact" class="text-white bg-gray-900 px-4 py-2 rounded-lg hover:bg-primary transition duration-300 shadow-md">Book Session</a>\
-            </div>\
-\
-            <!-- Mobile Menu Button -->\
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">\
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>\
-            </button>\
-        </nav>\
-        <!-- Mobile Menu (Hidden by default) -->\
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl py-2">\
-            <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>\
-            <a href="#portfolio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Portfolio</a>\
-            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>\
-            <a href="#contact" class="block px-4 py-2 text-white bg-gray-900 m-2 rounded-lg text-center" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Book Session</a>\
-        </div>\
-    </header>\
-\
-    <main>\
-        <!-- Hero Section -->\
-        <section id="home" class="relative h-screen flex items-center justify-center text-center bg-cover bg-center"\
-            style="background-image: url('https://placehold.co/1920x1080/4B5563/FFFFFF?text=Elegant+Wedding+Photo');">\
-            <div class="absolute inset-0 bg-black/40"></div>\
-            <div class="relative z-10 p-6 max-w-4xl">\
-                <h1 class="text-6xl sm:text-7xl md:text-8xl font-extrabold text-white text-logo mb-4 leading-tight">\
-                    Myohtut Photography\
-                </h1>\
-                <p class="text-xl sm:text-2xl text-gray-200 mb-8 font-light tracking-wider">\
-                    Capturing timeless moments from your love story to life's milestones.\
-                </p>\
-                <a href="#contact" class="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-full shadow-2xl hover:bg-primary hover:text-white transition duration-500 transform hover:scale-105">\
-                    Inquire Now\
-                </a>\
-            </div>\
-        </section>\
-\
-        <!-- Services Section (omitted for brevity, assume content is the same) -->\
-        <section id="services" class="py-16 md:py-24 bg-white">\
-             <!-- [CONTENT OMITTED FOR BREVITY] -->\
-            <div class="container text-center">\
-                <span class="text-primary text-sm font-semibold uppercase tracking-widest">Our Focus</span>\
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-12">The Art of Storytelling</h2>\
-\
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">\
-                    <!-- Wedding Photography -->\
-                    <div class="p-8 bg-gray-50 rounded-xl shadow-lg hover:shadow-2xl transition duration-500">\
-                        <svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21.5l-1.5-1.5C5.4 16.5 2 13.1 2 9.5 2 6 5.5 3 9.5 3c1.7 0 3.4.7 4.5 1.8A6.9 6.9 0 0118.5 3c4 0 7.5 3 7.5 6.5 0 3.6-3.4 7-8.5 10.5L12 21.5z"></path></svg>\
-                        <h3 class="text-2xl font-semibold mb-3">Wedding Photography</h3>\
-                        <p class="text-gray-600 mb-4">\
-                            Full-day coverage, emotional candid shots, and stunning artistic portraits that capture the unique atmosphere of your wedding day. Packages include a complimentary engagement session.\
-                        </p>\
-                        <a href="#contact" class="text-primary font-medium hover:underline">View Packages &rarr;</a>\
-                    </div>\
-\
-                    <!-- Portrait Photography -->\
-                    <div class="p-8 bg-gray-50 rounded-xl shadow-lg hover:shadow-2xl transition duration-500">\
-                        <svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zm-4 7v6a2 2 0 002 2h2m-6-8v6a2 2 0 002 2h2m-6-8c0 2.2-1.8 4-4 4H4"></path></svg>\
-                        <h3 class="text-2xl font-semibold mb-3">Portrait Sessions</h3>\
-                        <p class="text-gray-600 mb-4">\
-                            Custom sessions for individuals, families, maternity, and professional headshots. We focus on natural light and authentic expression to create powerful, personal imagery.\
-                        </p>\
-                        <a href="#contact" class="text-primary font-medium hover:underline">Book a Portrait &rarr;</a>\
-                    </div>\
-                </div>\
-            </div>\
-        </section>\
-\
-        <!-- Portfolio Section (Updated with data-url attribute for Lightbox) -->\
-        <section id="portfolio" class="py-16 md:py-24 bg-gray-100">\
-            <div class="container text-center">\
-                <span class="text-primary text-sm font-semibold uppercase tracking-widest">Our Work</span>\
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-12">Recent Galleries</h2>\
-\
-                <!-- Responsive Photo Grid -->\
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">\
-                    <!-- Images now have a data-full-url attribute and are wrapped in a clickable div -->\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300" \
-                        data-full-url="https://placehold.co/1000x1200/333333/FFFFFF?text=Wedding+1+Full">\
-                        <img src="https://placehold.co/400x500/333333/FFFFFF?text=Wedding+1" alt="Wedding Photography" class="w-full h-full object-cover">\
-                    </div>\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/4F46E5/FFFFFF?text=Portrait+1+Full">\
-                        <img src="https://placehold.co/400x500/4F46E5/FFFFFF?text=Portrait+1" alt="Portrait Session" class="w-full h-full object-cover">\
-                    </div>\
-                    <div class="gallery-item hidden sm:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/10B981/FFFFFF?text=Wedding+2+Full">\
-                        <img src="https://placehold.co/400x500/10B981/FFFFFF?text=Wedding+2" alt="Candid Shot" class="w-full h-full object-cover">\
-                    </div>\
-                    <div class="gallery-item hidden lg:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/F59E0B/FFFFFF?text=Family+Photo+Full">\
-                        <img src="https://placehold.co/400x500/F59E0B/FFFFFF?text=Family+Photo" alt="Family Portrait" class="w-full h-full object-cover">\
-                    </div>\
-\
-                    <div class="gallery-item hidden lg:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/9333EA/FFFFFF?text=Engagement+Full">\
-                        <img src="https://placehold.co/400x500/9333EA/FFFFFF?text=Engagement" alt="Engagement Session" class="w-full h-full object-cover">\
-                    </div>\
-                    <div class="gallery-item hidden sm:block overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/3B82F6/FFFFFF?text=Portrait+2+Full">\
-                        <img src="https://placehold.co/400x500/3B82F6/FFFFFF?text=Portrait+2" alt="Maternity Session" class="w-full h-full object-cover">\
-                    </div>\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/EF4444/FFFFFF?text=Ceremony+Full">\
-                        <img src="https://placehold.co/400x500/EF4444/FFFFFF?text=Ceremony" alt="Ceremony Moment" class="w-full h-full object-cover">\
-                    </div>\
-                    <div class="gallery-item overflow-hidden rounded-xl shadow-lg aspect-[4/5] bg-gray-300"\
-                        data-full-url="https://placehold.co/1000x1200/059669/FFFFFF?text=Couple+Full">\
-                        <img src="https://placehold.co/400x500/059669/FFFFFF?text=Couple" alt="Couple's Portrait" class="w-full h-full object-cover">\
-                    </div>\
-                </div>\
-            </div>\
-        </section>\
-\
-        <!-- About Section (omitted for brevity, assume content is the same) -->\
-        <section id="about" class="py-16 md:py-24 bg-white">\
-             <!-- [CONTENT OMITTED FOR BREVITY] -->\
-            <div class="container max-w-4xl">\
-                <div class="text-center mb-12">\
-                    <span class="text-primary text-sm font-semibold uppercase tracking-widest">Our Philosophy</span>\
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2">Meet the Artist</h2>\
-                </div>\
-                <div class="md:flex md:space-x-12 items-center">\
-                    <div class="md:w-1/3 mb-6 md:mb-0">\
-                        <img src="https://placehold.co/300x400/1F2937/FFFFFF?text=Myohtut" alt="Photographer Myohtut" class="w-full h-auto rounded-xl shadow-2xl object-cover">\
-                    </div>\
-                    <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">\
-                        <p class="mb-4">\
-                            Hello! I'm Myohtut, and I believe the best photographs are the ones that make you *feel* something. My approach is rooted in **candid, emotive storytelling**, blending photojournalism with fine-art portraiture. I aim to capture the raw, unscripted moments that define your relationships and milestones.\
-                        </p>\
-                        <p class="mb-4">\
-                            With over a decade of experience in both wedding and portrait photography, I provide a stress-free experience from the first consultation to the final gallery delivery. My goal is simple: to create timeless images that become treasured family heirlooms.\
-                        </p>\
-                        <p class="font-semibold text-primary">\
-                            Let's tell your story.\
-                        </p>\
-                    </div>\
-                </div>\
-            </div>\
-        </section>\
-\
-\
-        <!-- Contact Section (omitted for brevity, assume content is the same) -->\
-        <section id="contact" class="py-16 md:py-24 bg-gray-900">\
-             <!-- [CONTENT OMITTED FOR BREVITY] -->\
-            <div class="container max-w-3xl">\
-                <div class="text-center mb-12">\
-                    <span class="text-primary text-sm font-semibold uppercase tracking-widest">Get In Touch</span>\
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mt-2">Book Your Session</h2>\
-                    <p class="text-gray-400 mt-4">We're currently booking for the 2026 season. Please fill out the form below to check availability.</p>\
-                </div>\
-\
-                <form id="contact-form" class="bg-white p-8 sm:p-10 rounded-xl shadow-2xl space-y-6">\
-                    <div>\
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>\
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-300">\
-                    </div>\
-                    <div>\
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>\
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-300">\
-                    </div>\
-                    <div>\
-                        <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Service Required</label>\
-                        <select id="service" name="service" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-300 bg-white">\
-                            <option value="">Select a service...</option>\
-                            <option value="Wedding">Wedding Photography</option>\
-                            <option value="Portrait">Portrait Session</option>\
-                            <option value="Other">Other Inquiry</option>\
-                        </select>\
-                    </div>\
-                    <div>\
-                        <label for="details" class="block text-sm font-medium text-gray-700 mb-1">Tell Us About Your Event/Session</label>\
-                        <textarea id="details" name="details" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-300"></textarea>\
-                    </div>\
-                    <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-violet-700 transition duration-300 shadow-lg transform hover:scale-[1.01]">\
-                        Send Inquiry\
-                    </button>\
-                </form>\
-\
-            </div>\
-        </section>\
-    </main>\
-\
-    <!-- Footer (omitted for brevity, assume content is the same) -->\
-    <footer class="bg-accent text-white py-12">\
-        <div class="container text-center">\
-            <h4 class="text-3xl font-bold text-logo tracking-tight mb-4">Myohtut Photography</h4>\
-            <div class="flex justify-center space-x-6 text-gray-400 mb-6">\
-                <p>Email: contact@myohtutphoto.com</p>\
-                <p>Phone: (555) 123-4567</p>\
-            </div>\
-            <p class="text-gray-500 text-sm">&copy; 2025 Myohtut Photography. All rights reserved.</p>\
-        </div>\
-    </footer>\
-\
-    <!-- 1. Contact Submission Modal (Instead of alert()) -->\
-    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">\
-        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-11/12 text-center transform transition-all duration-300 scale-95 opacity-0" id="modal-content">\
-            <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>\
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Inquiry Sent!</h3>\
-            <p class="text-gray-600 mb-6">Thank you for your interest. We will be in touch within 24-48 hours to discuss your photography needs.</p>\
-            <button id="close-modal-button" class="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-primary transition duration-300">\
-                Close\
-            </button>\
-        </div>\
-    </div>\
-\
-    <!-- 2. Lightbox Modal -->\
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center opacity-0">\
-        <div class="lightbox-content">\
-            <img id="lightbox-image" src="" alt="Full Resolution Image" class="rounded-lg shadow-2xl">\
-            <!-- Close Button -->\
-            <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl font-bold p-2 rounded-full bg-black/50 hover:bg-black/80 transition duration-300 focus:outline-none">\
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>\
-            </button>\
-        </div>\
-    </div>\
-\
-\
-    <script type="module">\
-        // --- Firebase SDK Imports ---\
-        import \{ initializeApp \} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";\
-        import \{ getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged \} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";\
-        import \{ getFirestore, collection, addDoc, serverTimestamp, setLogLevel \} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";\
-\
-        // Setup the global variables\
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';\
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : \{\};\
-        const __initial_auth_token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;\
-\
-        // Initialize Firebase\
-        let app;\
-        let db;\
-        let auth;\
-        let userId = null;\
-        let isAuthReady = false;\
-\
-        setLogLevel('Debug'); // Enable Firestore logging\
-\
-        if (Object.keys(firebaseConfig).length > 0) \{\
-            try \{\
-                app = initializeApp(firebaseConfig);\
-                db = getFirestore(app);\
-                auth = getAuth(app);\
-\
-                // Handle Authentication and determine userId\
-                onAuthStateChanged(auth, async (user) => \{\
-                    if (user) \{\
-                        userId = user.uid;\
-                    \} else \{\
-                        // If no user, sign in with custom token or anonymously\
-                        try \{\
-                            if (__initial_auth_token) \{\
-                                const cred = await signInWithCustomToken(auth, __initial_auth_token);\
-                                userId = cred.user.uid;\
-                            \} else \{\
-                                const anonUser = await signInAnonymously(auth);\
-                                userId = anonUser.user.uid;\
-                            \}\
-                        \} catch (error) \{\
-                            console.error("Firebase Auth Error on init:", error);\
-                            // Fallback to a random ID if auth fails completely\
-                            userId = crypto.randomUUID();\
-                        \}\
-                    \}\
-                    isAuthReady = true;\
-                    console.log("Auth is ready. User ID:", userId);\
-                \});\
-\
-            \} catch (error) \{\
-                console.error("Firebase Initialization Error:", error);\
-            \}\
-        \} else \{\
-            console.log("Firebase configuration not available. Running in standalone mode.");\
-            isAuthReady = true; // Assume ready if no Firebase is present\
-        \}\
-\
-\
-        // --- Core Website JavaScript (Scoped within the module) ---\
-\
-        // 1. Mobile Menu Toggle\
-        document.getElementById('mobile-menu-button').addEventListener('click', function() \{\
-            const menu = document.getElementById('mobile-menu');\
-            menu.classList.toggle('hidden');\
-        \});\
-\
-        // 2. Contact Submission Modal Functions\
-        function closeModal() \{\
-            const modal = document.getElementById('success-modal');\
-            const modalContent = document.getElementById('modal-content');\
-\
-            modalContent.classList.remove('scale-100', 'opacity-100');\
-            modalContent.classList.add('scale-95', 'opacity-0');\
-\
-            setTimeout(() => \{\
-                modal.classList.add('hidden');\
-            \}, 300);\
-        \}\
-\
-        function showModal(title, message, isSuccess) \{\
-            const modal = document.getElementById('success-modal');\
-            const modalContent = document.getElementById('modal-content');\
-            const modalTitle = modalContent.querySelector('h3');\
-            const modalMessage = modalContent.querySelector('p');\
-            const modalIcon = modalContent.querySelector('svg');\
-\
-            modalTitle.textContent = title;\
-            modalMessage.textContent = message;\
-\
-            if (isSuccess) \{\
-                modalIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';\
-                modalIcon.classList.remove('text-red-500');\
-                modalIcon.classList.add('text-primary'); \
-            \} else \{\
-                modalIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';\
-                modalIcon.classList.remove('text-primary');\
-                modalIcon.classList.add('text-red-500');\
-            \}\
-\
-            modal.classList.remove('hidden');\
-\
-            setTimeout(() => \{\
-                modalContent.classList.remove('scale-95', 'opacity-0');\
-                modalContent.classList.add('scale-100', 'opacity-100');\
-            \}, 10);\
-        \}\
-\
-        // 3. Contact Form Submission\
-        document.getElementById('contact-form').addEventListener('submit', async function(event) \{\
-            event.preventDefault();\
-\
-            if (!isAuthReady || !db || !userId) \{\
-                console.error("Firebase or Auth is not ready. Cannot save data.");\
-                showModal('Submission Failed', 'The connection to the server is not ready. Please try again in a moment or contact us via email.', false);\
-                return;\
-            \}\
-\
-            const form = event.target;\
-            const formData = new FormData(form);\
-            const data = Object.fromEntries(formData.entries());\
-\
-            try \{\
-                // Path: /artifacts/\{appId\}/public/data/inquiries\
-                const collectionPath = `artifacts/$\{appId\}/public/data/inquiries`;\
-\
-                await addDoc(collection(db, collectionPath), \{\
-                    ...data,\
-                    userId: userId,\
-                    timestamp: serverTimestamp(),\
-                \});\
-\
-                form.reset(); \
-                showModal('Inquiry Sent!', 'Thank you for your interest. We will be in touch within 24-48 hours!', true);\
-            \} catch (error) \{\
-                console.error("Error writing document: ", error);\
-                showModal('Submission Error', 'We could not submit your inquiry due to a network error. Please try again.', false);\
-            \}\
-        \});\
-\
-        // 4. Modal Close Functionality Setup\
-        document.getElementById('close-modal-button').addEventListener('click', closeModal);\
-        document.getElementById('success-modal').addEventListener('click', function(event) \{\
-            if (event.target === this) \{\
-                closeModal();\
-            \}\
-        \});\
-        \
-        // --- NEW LIGHTBOX FUNCTIONALITY ---\
-\
-        const lightboxModal = document.getElementById('lightbox-modal');\
-        const lightboxImage = document.getElementById('lightbox-image');\
-        const lightboxClose = document.getElementById('lightbox-close');\
-        \
-        // Function to open the lightbox\
-        function openLightbox(url) \{\
-            lightboxImage.src = url;\
-            lightboxModal.classList.remove('hidden');\
-            // Animate opacity in\
-            setTimeout(() => lightboxModal.classList.add('opacity-100'), 10);\
-        \}\
-\
-        // Function to close the lightbox\
-        function closeLightbox() \{\
-            // Animate opacity out\
-            lightboxModal.classList.remove('opacity-100');\
-            setTimeout(() => \{\
-                lightboxModal.classList.add('hidden');\
-                lightboxImage.src = ''; // Clear image source\
-            \}, 300); // Matches CSS transition time\
-        \}\
-\
-        // Add click listeners to all gallery items\
-        document.querySelectorAll('.gallery-item').forEach(item => \{\
-            item.addEventListener('click', function() \{\
-                const fullUrl = this.getAttribute('data-full-url');\
-                if (fullUrl) \{\
-                    openLightbox(fullUrl);\
-                \}\
-            \});\
-        \});\
-\
-        // Close lightbox on button click\
-        lightboxClose.addEventListener('click', closeLightbox);\
-\
-        // Close lightbox when clicking outside the image content\
-        lightboxModal.addEventListener('click', function(event) \{\
-            // Check if the click occurred directly on the modal background\
-            if (event.target === lightboxModal) \{\
-                closeLightbox();\
-            \}\
-        \});\
-\
-    </script>\
-\
-</body>\
-</html>\
-}
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#hero" class="text-3xl font-bold text-primary font-serif">Myohtut.</a>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Services</a>
+                    <a href="#portfolio" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Portfolio</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary transition duration-150 font-medium">About</a>
+                    <a href="#contact" class="px-4 py-2 text-white bg-primary rounded-full hover:bg-opacity-90 transition duration-150 shadow-md">Book Now</a>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg pb-4">
+            <nav class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Services</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Portfolio</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-opacity-90 mt-2">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <!-- Placeholder Image (replace with high-res background image) -->
+                <img src="https://placehold.co/1920x1080/404040/ffffff?text=HERO+IMAGE" onerror="this.src='https://placehold.co/1920x1080/404040/ffffff?text=HERO+IMAGE'" alt="Photographer capturing a beautiful moment" class="w-full h-full object-cover opacity-60 transition duration-500 hover:opacity-80">
+            </div>
+            <div class="z-10 text-center p-8 bg-black bg-opacity-30 rounded-xl max-w-4xl">
+                <h1 class="text-6xl sm:text-7xl font-serif text-white mb-4 leading-tight text-shadow">
+                    Capturing the Light and Soul of Your Story
+                </h1>
+                <p class="text-xl text-gray-200 mb-8 font-sans">
+                    Authentic, Timeless, and Emotionally Driven Photography.
+                </p>
+                <a href="#portfolio" class="inline-block px-8 py-3 text-lg font-semibold text-primary bg-secondary rounded-full shadow-xl hover:bg-opacity-80 transition duration-300 transform hover:scale-105">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Services Section -->
+        <section id="services" class="py-20 md:py-28 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm uppercase tracking-widest text-primary font-semibold mb-2">My Offerings</h2>
+                    <h3 class="text-4xl font-serif text-gray-900 font-bold">Services Built Around You</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Service 1: Weddings (Clean Emoji: 💍) -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-primary transition duration-300 hover:shadow-2xl">
+                        <div class="text-4xl text-primary mb-4">💍</div>
+                        <h4 class="text-2xl font-serif font-semibold mb-3">Wedding Photography</h4>
+                        <p class="text-gray-600 mb-4">
+                            Full-day coverage capturing everything from the small details to the grand exit. Packages include two photographers and a custom-designed album.
+                        </p>
+                        <a href="#contact" class="text-primary font-medium hover:underline text-sm">See Packages →</a>
+                    </div>
+
+                    <!-- Service 2: Portraits (Clean Emoji: 📸) -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-primary transition duration-300 hover:shadow-2xl">
+                        <div class="text-4xl text-primary mb-4">📸</div>
+                        <h4 class="text-2xl font-serif font-semibold mb-3">Lifestyle & Family Portraits</h4>
+                        <p class="text-gray-600 mb-4">
+                            Authentic, unposed sessions designed to capture the genuine connection and personality of your family in a natural setting.
+                        </p>
+                        <a href="#contact" class="text-primary font-medium hover:underline text-sm">Book a Session →</a>
+                    </div>
+
+                    <!-- Service 3: Corporate (Clean Emoji: 💼) -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border-t-4 border-primary transition duration-300 hover:shadow-2xl">
+                        <div class="text-4xl text-primary mb-4">💼</div>
+                        <h4 class="text-2xl font-serif font-semibold mb-3">Corporate & Branding</h4>
+                        <p class="text-gray-600 mb-4">
+                            Modern headshots, team culture photography, and visual content designed to elevate your brand's professional image and marketing materials.
+                        </p>
+                        <a href="#contact" class="text-primary font-medium hover:underline text-sm">Request a Quote →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Portfolio Section -->
+        <section id="portfolio" class="py-20 md:py-28 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm uppercase tracking-widest text-primary font-semibold mb-2">Recent Work</h2>
+                    <h3 class="text-4xl font-serif text-gray-900 font-bold">The Stories I Tell</h3>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Item 1 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/606060/ffffff?text=Wedding+1" onerror="this.src='https://placehold.co/600x600/606060/ffffff?text=Wedding+1'" alt="Candid wedding shot" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/808080/ffffff?text=Portrait+2" onerror="this.src='https://placehold.co/600x600/808080/ffffff?text=Portrait+2'" alt="Family portrait on the beach" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/404040/ffffff?text=Corporate+3" onerror="this.src='https://placehold.co/600x600/404040/ffffff?text=Corporate+3'" alt="Corporate headshot" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/b0b0b0/ffffff?text=Wedding+4" onerror="this.src='https://placehold.co/600x600/b0b0b0/ffffff?text=Wedding+4'" alt="First dance at wedding" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/707070/ffffff?text=Portrait+5" onerror="this.src='https://placehold.co/600x600/707070/ffffff?text=Portrait+5'" alt="Maternity shoot" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/505050/ffffff?text=Landscape+6" onerror="this.src='https://placehold.co/600x600/505050/ffffff?text=Landscape+6'" alt="Destination landscape" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 7 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/a0a0a0/ffffff?text=Detail+7" onerror="this.src='https://placehold.co/600x600/a0a0a0/ffffff?text=Detail+7'" alt="Wedding ring detail shot" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Item 8 -->
+                    <div class="gallery-item rounded-lg shadow-md">
+                        <img src="https://placehold.co/600x600/c0c0c0/ffffff?text=Event+8" onerror="this.src='https://placehold.co/600x600/c0c0c0/ffffff?text=Event+8'" alt="Event photography" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#contact" class="inline-block px-8 py-3 text-lg font-semibold text-white bg-primary rounded-full hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                        Inquire About Availability
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. About Section -->
+        <section id="about" class="py-20 md:py-28 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <h2 class="text-sm uppercase tracking-widest text-primary font-semibold mb-2">Meet the Artist</h2>
+                        <h3 class="text-4xl font-serif text-gray-900 font-bold mb-6">Hi, I'm Myohtut.</h3>
+                        <p class="text-lg text-gray-600 mb-6">
+                            For me, photography is more than just clicking a shutter; it's about freezing the genuine, raw emotion that tells a compelling story. I specialize in a candid, documentary style, believing the best moments are the ones you didn't know were being captured.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-6">
+                            My goal is to provide you with a timeless collection of images that don't just remind you of what you looked like, but how you **felt**. When I'm not behind the camera, you can find me hiking the Pacific Northwest trails or editing with a strong cup of coffee.
+                        </p>
+                        <a href="#contact" class="text-primary font-medium hover:underline">Let's connect and share your vision →</a>
+                    </div>
+                    <!-- Placeholder Image (replace with portrait of photographer) -->
+                    <div class="order-1 lg:order-2">
+                        <img src="https://placehold.co/600x800/808080/ffffff?text=Myohtut+Portrait" onerror="this.src='https://placehold.co/600x800/808080/ffffff?text=Myohtut+Portrait'" alt="Portrait of photographer Myohtut" class="w-full h-auto rounded-xl shadow-2xl transition duration-500 hover:shadow-primary/50">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-20 md:py-28 bg-primary">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+                <div class="text-center mb-12">
+                    <h2 class="text-sm uppercase tracking-widest text-secondary font-semibold mb-2">Get Started</h2>
+                    <h3 class="text-4xl font-serif font-bold">Tell Me About Your Project</h3>
+                </div>
+
+                <form id="contact-form" class="bg-white p-8 sm:p-10 rounded-xl shadow-2xl space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="name" placeholder="Your Full Name" required class="w-full p-3 rounded-lg border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 text-gray-800 transition duration-150">
+                        <input type="email" name="email" placeholder="Email Address" required class="w-full p-3 rounded-lg border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 text-gray-800 transition duration-150">
+                    </div>
+                    <input type="text" name="event_date" placeholder="Event Date (e.g., May 15, 2026)" required class="w-full p-3 rounded-lg border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 text-gray-800 transition duration-150">
+                    <select name="service_type" required class="w-full p-3 rounded-lg border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 text-gray-800 transition duration-150">
+                        <option value="">Select Service Type</option>
+                        <option value="Wedding">Wedding Photography</option>
+                        <option value="Portrait">Lifestyle/Family Portrait</option>
+                        <option value="Corporate">Corporate/Branding</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <textarea name="message" rows="5" placeholder="Tell me more about your vision, location, and budget." required class="w-full p-3 rounded-lg border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 text-gray-800 transition duration-150"></textarea>
+
+                    <button type="submit" class="w-full py-3 bg-secondary text-primary font-bold rounded-lg hover:bg-opacity-90 transition duration-150 shadow-xl transform hover:scale-[1.01]">
+                        Send Inquiry
+                    </button>
+                    <p class="text-center text-sm text-gray-500">I will respond within 48 hours.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">&copy; 2024 Myohtut Photography. All Rights Reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4 text-gray-400">
+                <a href="#" class="hover:text-primary transition duration-150">Instagram</a>
+                <a href="#" class="hover:text-primary transition duration-150">Facebook</a>
+                <a href="#" class="hover:text-primary transition duration-150">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL for Form Submission Success/Error -->
+    <div id="success-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[100] hidden flex items-center justify-center p-4" onclick="closeModal()">
+        <div id="modal-content" class="bg-white rounded-xl shadow-2xl p-6 sm:p-8 w-full max-w-sm transition-all duration-300 transform scale-95 opacity-0">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary/20">
+                    <!-- Icon placeholder, updated by JS -->
+                    <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+                <h3 class="mt-4 text-lg leading-6 font-medium text-gray-900"></h3>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500"></p>
+                </div>
+            </div>
+            <div class="mt-5 sm:mt-6">
+                <button type="button" id="close-modal-button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:text-sm">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import the separate form logic script -->
+    <script type="module" src="./form_logic.js"></script>
+
+</body>
+</html>
