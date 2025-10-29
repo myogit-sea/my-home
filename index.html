@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myohtut Photography | Authentic Storytelling</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght+300;400;600&display=swap" rel="stylesheet">
     <style>
         /* Define a custom theme using the Playfair Display and Inter fonts */
         :root {
@@ -41,7 +41,7 @@
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#hero" class="text-3xl font-bold text-primary font-serif">Myohtut.</a>
+                <a href="#hero" class="text-3xl font-bold text-primary font-serif">MyohtutPhotography</a>
                 <nav class="hidden md:flex space-x-8">
                     <a href="#services" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Services</a>
                     <a href="#portfolio" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Portfolio</a>
@@ -267,11 +267,8 @@
         const auth = getAuth(app);
         const MESSAGES_COLLECTION = "inquiries";
 
-        // Attempt anonymous sign-in immediately
-        signInAnonymously(auth).catch((error) => {
-            console.error("Firebase Anonymous Auth Failed:", error);
-            // Non-critical failure, app can still run, but form submission will fail later.
-        });
+        // The initial, non-awaited signInAnonymously call has been removed.
+        // Authentication is now handled within the form submission logic to ensure completion.
 
 
         // 4. MODAL UTILITY FUNCTIONS
@@ -289,12 +286,14 @@
             // Set style and icon based on success or error
             if (isSuccess) {
                 modalIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`; // Checkmark
-                modalIcon.classList.replace('text-primary', 'text-green-600');
-                modalContent.classList.replace('border-primary', 'border-green-600');
+                // Adjusting class logic to be more robust
+                modalIcon.classList.remove('text-red-600');
+                modalIcon.classList.add('text-primary'); 
             } else {
                 modalIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`; // X Mark
-                modalIcon.classList.replace('text-primary', 'text-red-600');
-                modalContent.classList.replace('border-primary', 'border-red-600');
+                // Adjusting class logic to be more robust
+                modalIcon.classList.remove('text-primary');
+                modalIcon.classList.add('text-red-600');
             }
 
             modal.classList.remove('hidden');
@@ -322,7 +321,7 @@
         });
 
 
-        // 5. CONTACT FORM SUBMISSION HANDLER
+        // 5. CONTACT FORM SUBMISSION HANDLER (FIX APPLIED)
         document.getElementById('contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -345,9 +344,10 @@
             };
 
             try {
-                // Ensure authentication is complete before trying to add data
+                // ** CRITICAL FIX **: Ensure authentication is complete by awaiting sign-in 
+                // if the current user is not yet set.
                 if (!auth.currentUser) {
-                    await signInAnonymously(auth);
+                    await signInAnonymously(auth); 
                 }
 
                 // Add document to Firestore
